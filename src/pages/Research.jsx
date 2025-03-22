@@ -122,7 +122,7 @@ function Research() {
             <a
               href="#past-projects"
               className="inline-block py-3 px-8 text-lg font-medium text-white bg-[#00bc72] 
-                rounded-full shadow-lg hover:bg-[#0a5958] transition-all duration-300"
+                rounded-full shadow-lg text-center hover:bg-[#0a5958] transition-all duration-300"
             >
               Explore Past Projects
             </a>
