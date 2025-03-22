@@ -4,9 +4,9 @@ import { Carousel } from "./Carousel";
 
 const HomePageInfo = () => {
   return (
-    <div className="flex flex-col md:flex-row md:items-center gap-6 sm:gap-8 md:gap-10 max-w-7xl mx-auto p-4 sm:p-6 md:p-8">
+    <div className="flex flex-col lg:flex-row md:items-center gap-6 sm:gap-8 md:gap-10 max-w-full mx-auto p-4 sm:p-6 md:p-8 flex-custom">
       {/* Text Section (Takes Remaining Width) */}
-      <div className="flex-1 flex flex-col text-center md:text-left px-4 sm:px-6 md:px-8 py-6 sm:py-8">
+      <div className="flex-1 flex flex-col text-center md:text-left px-4 sm:px-6 md:px-8 py-6 sm:py-8 text-custom-center text-custom-left">
         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary">
           {DetailingHomePage.title}
         </h1>
@@ -19,7 +19,7 @@ const HomePageInfo = () => {
       </div>
 
       {/* Carousel Section (Responsive Width) */}
-      <div className="w-full sm:w-[350px] md:w-[450px] lg:w-[600px] flex items-center justify-center rounded-xl p-4 sm:p-6 mx-auto md:mx-0">
+      <div className="w-full sm:w-[350px] lg:w-[800px] flex items-center justify-center rounded-xl mb-5 p-4 sm:p-6  mx-auto md:mx-0 mx-custom-auto mx-custom-0">
         <div className="relative overflow-hidden w-full h-full py-15 sm:py-16 md:py-20">
           <Carousel slides={slideData} />
         </div>

@@ -79,7 +79,7 @@ function Navbar() {
               <li key={item}>
                 <NavLink
                   to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  className="block text-primary text-lg font-medium py-2"
+                  className="block text-primary text-lg font-medium py-3"
                   onClick={() => {
                     setIsOpen(false);
                     handleClick();

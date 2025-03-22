@@ -1,6 +1,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
+/* Default: Column layout and centered content for screens 1200px and below */
+.flex-custom {
+  flex-direction: column !important; /* Override Tailwind's lg:flex-row */
+}
+
+.text-custom-center {
+  text-align: center !important; /* Override md:text-left */
+}
+
+.mx-custom-auto {
+  margin-left: auto !important;
+  margin-right: auto !important; /* Override md:mx-0 */
+}
+
+/* Row layout and left-aligned text for screens above 1200px */
+@media (min-width: 1025px) {
+  .flex-custom {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+  .text-custom-left {
+    text-align: left !important;
+  }
+  .mx-custom-0 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
 :root {
   --font-primary: "Poppins", sans-serif;
   --color-primary: #004746;
