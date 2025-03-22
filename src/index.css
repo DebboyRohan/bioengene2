@@ -36,16 +36,37 @@
 .hover-text-fix:hover {
   color: var(--color-foreground) !important;
 }
+/* Ensure this is in your global CSS file */
 @keyframes scroll {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
+  100% {
     transform: translateX(-50%);
   }
 }
 
 .animate-scroll {
   display: flex;
-  animation: scroll 20s linear infinite;
+  animation: scroll linear infinite;
+  animation-duration: 20s; /* Base duration */
+}
+
+/* Responsive animation duration */
+@media (max-width: 640px) {
+  .animate-scroll {
+    animation-duration: 15s; /* Faster on mobile */
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .animate-scroll {
+    animation-duration: 18s; /* Medium speed on tablet */
+  }
+}
+
+@media (min-width: 1025px) {
+  .animate-scroll {
+    animation-duration: 25s; /* Slower on desktop */
+  }
 }

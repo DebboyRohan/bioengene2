@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { tracerScreenshots } from "../assets/asset.js";
-// Dummy screenshot data (replace URLs with actual Tracer site pages)
 
 // Animation variants
 const fadeInUp = {
@@ -57,30 +56,29 @@ function Tracer() {
 
   return (
     <div className="bg-white text-[#004746] overflow-hidden">
-      {/* New Hero Section with Waveform Animation */}
+      {/* Hero Section with Waveform Animation */}
       <motion.section
         initial="hidden"
         animate="visible"
         variants={staggerChildren}
-        className="relative py-10 px-6 md:px-12 bg-white flex items-center justify-center min-h-[30vh]"
+        className="relative pt-16 pb-10 sm:pt-20 sm:pb-12 md:pt-24 md:pb-16 lg:pt-28 lg:pb-20 xl:pt-32 min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] flex items-center justify-center px-4 sm:px-6 md:px-12"
       >
-        <div className="max-w-7xl mx-auto text-center z-10">
+        <div className="max-w-7xl mx-auto text-center z-10 w-full">
           <motion.h1
             variants={fadeInUp}
-            className="text-5xl md:text-7xl font-extrabold text-primary mb-6 
-              tracking-tight relative inline-block"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-primary mb-4 sm:mb-6 tracking-tight relative inline-block"
           >
             Tracer
             <motion.span
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-              className="absolute bottom-0 left-0 w-full h-2 bg-[#00bc72]/30 rounded-full transform origin-left"
+              className="absolute bottom-0 left-0 w-full h-1 sm:h-2 bg-[#00bc72]/30 rounded-full transform origin-left"
             />
           </motion.h1>
           <motion.p
             variants={fadeInUp}
-            className="text-xl md:text-2xl leading-relaxed text-[#727272] max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-[#727272] max-w-3xl mx-auto"
           >
             Explore Tracer: Precision biotechnology in action. Click the
             screenshots below to interact with live demos.
@@ -95,7 +93,6 @@ function Tracer() {
             stroke="#00bc72"
             strokeWidth="1.5"
           >
-            {/* Waveform Lines */}
             <motion.path
               variants={waveVariants}
               d="M0 30% Q25% 20%, 50% 30% T100% 30%"
@@ -123,9 +120,9 @@ function Tracer() {
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerChildren}
-        className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
+        className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
           {tracerScreenshots.map((screenshot) => (
             <motion.div
               key={screenshot.id}
@@ -143,7 +140,7 @@ function Tracer() {
               <img
                 src={screenshot.screenshot}
                 alt={screenshot.title}
-                className="w-full h-48 object-cover transition-transform duration-300 
+                className="w-full h-40 sm:h-48 md:h-56 object-cover transition-transform duration-300 
                   group-hover:scale-105"
               />
               <div
@@ -151,10 +148,12 @@ function Tracer() {
                 opacity-0 group-hover:opacity-70 transition-opacity duration-300"
               />
               <div
-                className="absolute bottom-0 left-0 right-0 p-4 text-white 
+                className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white 
                 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               >
-                <p className="text-sm font-medium">{screenshot.title}</p>
+                <p className="text-xs sm:text-sm md:text-base font-medium">
+                  {screenshot.title}
+                </p>
               </div>
               <motion.div
                 initial={{ scaleX: 0 }}
@@ -174,23 +173,23 @@ function Tracer() {
           animate="visible"
           exit="exit"
           variants={overlayVariants}
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-500 p-6"
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-4 sm:px-6 md:p-6"
           onClick={() => setSelectedScreenshot(null)}
         >
           <motion.div
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[80vh] overflow-hidden 
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-full sm:max-w-4xl md:max-w-5xl h-[70vh] sm:h-[80vh] overflow-hidden 
               relative border border-[#00bc72]/20"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
             style={{ fontFamily: "var(--font-primary)" }}
           >
             <button
               onClick={() => setSelectedScreenshot(null)}
-              className="absolute top-4 right-4 text-[#727272] hover:text-accent 
+              className="absolute top-2 sm:top-4 right-2 sm:right-4 text-[#727272] hover:text-accent 
                 transition-colors duration-300 z-10"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-8 h-8"
+                className="w-6 sm:w-8 h-6 sm:h-8"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

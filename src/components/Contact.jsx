@@ -53,25 +53,24 @@ function Contact() {
         initial="hidden"
         animate="visible"
         variants={staggerChildren}
-        className="relative py-10 px-6 md:px-12 bg-white flex items-center justify-center min-h-[20vh]"
+        className="relative pt-12 pb-8 sm:pt-16 sm:pb-10 md:pt-20 md:pb-12 lg:pt-24 lg:pb-16 xl:pt-28 min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex items-center justify-center px-4 sm:px-6 md:px-12"
       >
-        <div className="max-w-7xl mx-auto text-center z-10">
+        <div className="max-w-7xl mx-auto text-center z-10 w-full">
           <motion.h1
             variants={textFadeIn}
-            className="text-5xl md:text-7xl font-extrabold text-primary mb-6 
-              tracking-tight relative inline-block"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-primary mb-4 sm:mb-6 tracking-tight relative inline-block"
           >
             Contact Us
             <motion.span
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-              className="absolute bottom-0 left-0 w-full h-2 bg-[#00bc72]/30 rounded-full transform origin-left"
+              className="absolute bottom-0 left-0 w-full h-1 sm:h-2 bg-[#00bc72]/30 rounded-full transform origin-left"
             />
           </motion.h1>
           <motion.p
             variants={textFadeIn}
-            className="text-xl md:text-2xl leading-relaxed text-[#727272] max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-[#727272] max-w-3xl mx-auto"
           >
             Get in touch with BioEnGene to collaborate, inquire, or join our
             mission in biotechnology innovation.
@@ -86,18 +85,16 @@ function Contact() {
             stroke="#00bc72"
             strokeWidth="1"
           >
-            {/* Connecting Lines */}
             <motion.path
               variants={lineVariants}
               d="M10% 40% L40% 20% L70% 50% M40% 20% L50% 60% M70% 50% L30% 70%"
               strokeOpacity="0.3"
             />
-            {/* Animated Nodes */}
             <motion.circle
               variants={nodeVariants}
               cx="10%"
               cy="40%"
-              r="6"
+              r="4 sm:r-6"
               fill="#00bc72"
               opacity="0.5"
             />
@@ -105,7 +102,7 @@ function Contact() {
               variants={nodeVariants}
               cx="40%"
               cy="20%"
-              r="8"
+              r="6 sm:r-8"
               fill="#00bc72"
               opacity="0.5"
             />
@@ -113,7 +110,7 @@ function Contact() {
               variants={nodeVariants}
               cx="70%"
               cy="50%"
-              r="6"
+              r="4 sm:r-6"
               fill="#00bc72"
               opacity="0.5"
             />
@@ -121,7 +118,7 @@ function Contact() {
               variants={nodeVariants}
               cx="50%"
               cy="60%"
-              r="7"
+              r="5 sm:r-7"
               fill="#00bc72"
               opacity="0.5"
             />
@@ -129,7 +126,7 @@ function Contact() {
               variants={nodeVariants}
               cx="30%"
               cy="70%"
-              r="6"
+              r="4 sm:r-6"
               fill="#00bc72"
               opacity="0.5"
             />
@@ -143,70 +140,69 @@ function Contact() {
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerChildren}
-        className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
+        className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto"
       >
         <motion.h2
           variants={fadeInUp}
-          className="text-3xl md:text-4xl font-bold text-primary mb-10 tracking-tight text-center"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-6 sm:mb-8 md:mb-10 tracking-tight text-center"
         >
           Reach Out
         </motion.h2>
         <motion.div
           variants={staggerChildren}
-          className="bg-white p-8 rounded-2xl shadow-lg border border-[#004746]/10 
-            max-w-2xl mx-auto"
+          className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-[#004746]/10 max-w-full sm:max-w-xl md:max-w-2xl mx-auto"
           style={{ fontFamily: "var(--font-primary)" }}
         >
-          <form className="space-y-6">
+          <form className="space-y-4 sm:space-y-6">
             <motion.div variants={inputVariants}>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-[#727272] mb-1"
+                className="block text-xs sm:text-sm font-medium text-[#727272] mb-1"
               >
                 Name
               </label>
               <input
                 type="text"
                 id="name"
-                className="w-full p-3 rounded-lg border border-[#004746]/20 text-[#727272] 
-                  focus:outline-none focus:ring-2 focus:ring-[#00bc72] transition-all duration-300"
+                className="w-full p-2 sm:p-3 rounded-lg border border-[#004746]/20 text-[#727272] 
+                  text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#00bc72] transition-all duration-300"
                 placeholder="Your Name"
               />
             </motion.div>
             <motion.div variants={inputVariants}>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-[#727272] mb-1"
+                className="block text-xs sm:text-sm font-medium text-[#727272] mb-1"
               >
                 Email
               </label>
               <input
                 type="email"
                 id="email"
-                className="w-full p-3 rounded-lg border border-[#004746]/20 text-[#727272] 
-                  focus:outline-none focus:ring-2 focus:ring-[#00bc72] transition-all duration-300"
+                className="w-full p-2 sm:p-3 rounded-lg border border-[#004746]/20 text-[#727272] 
+                  text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#00bc72] transition-all duration-300"
                 placeholder="Your Email"
               />
             </motion.div>
             <motion.div variants={inputVariants}>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-[#727272] mb-1"
+                className="block text-xs sm:text-sm font-medium text-[#727272] mb-1"
               >
                 Message
               </label>
               <textarea
                 id="message"
-                rows="5"
-                className="w-full p-3 rounded-lg border border-[#004746]/20 text-[#727272] 
-                  focus:outline-none focus:ring-2 focus:ring-[#00bc72] transition-all duration-300"
+                rows="4 sm:rows-5"
+                className="w-full p-2 sm:p-3 rounded-lg border border-[#004746]/20 text-[#727272] 
+                  text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#00bc72] transition-all duration-300"
                 placeholder="Your Message"
               />
             </motion.div>
             <motion.div variants={fadeInUp} className="text-center">
               <button
                 type="submit"
-                className="inline-block py-3 px-8 text-lg font-medium text-white bg-[#00bc72] 
+                className="inline-block py-2 px-6 sm:py-3 sm:px-8 text-base sm:text-lg font-medium text-white bg-[#00bc72] 
                   rounded-full shadow-lg hover:bg-[#0a5958] transition-all duration-300"
               >
                 Send Message
