@@ -173,7 +173,7 @@ function Tracer() {
           animate="visible"
           exit="exit"
           variants={overlayVariants}
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-4 sm:px-6 md:p-6"
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-500 px-4 sm:px-6 md:p-6"
           onClick={() => setSelectedScreenshot(null)}
         >
           <motion.div
