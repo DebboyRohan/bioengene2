@@ -3,7 +3,9 @@ import defaultpic from "../assets/images/defaultPic.jpg";
 import linkedinlogo from "../assets/images/linkedinlogo.png";
 import maillogo from "../assets/images/mailLogo.png";
 import herosectionhome from "../assets/images/herosectionhome.jpg";
-
+import biofuel from "../assets/images/biofuel.jpg";
+import cancer from "../assets/images/cancer.jpg";
+import ecofriedly from "../assets/images/ecofriendly.jpg";
 export { defaultpic, biotechdept };
 //Home page informations
 export const HeroSectionInfoHomePage = {
@@ -164,7 +166,7 @@ export const pastProjects = [
       "A project focused on enhancing biofuel production through genetic engineering.",
     details:
       "This research explored novel methods to optimize biofuel yields using genetically modified microorganisms. The team developed a scalable bioprocess that increased efficiency by 30% compared to traditional methods, with potential applications in sustainable energy.",
-    image_url: "https://via.placeholder.com/300x200?text=BioFuel",
+    image_url: biofuel,
   },
   {
     id: 2,
@@ -173,7 +175,7 @@ export const pastProjects = [
       "Developing rapid diagnostic tools for early cancer detection.",
     details:
       "This project aimed to create a point-of-care diagnostic platform using bioengineered sensors. The technology reduced detection time to under 15 minutes, offering a breakthrough in early cancer screening and patient outcomes.",
-    image_url: "https://via.placeholder.com/300x200?text=Cancer",
+    image_url: cancer,
   },
   {
     id: 3,
@@ -182,7 +184,7 @@ export const pastProjects = [
       "Creating sustainable materials inspired by biological systems.",
     details:
       "Inspired by natural structures, this research produced a biodegradable composite material with applications in packaging and construction. The material demonstrated a 40% reduction in environmental impact compared to conventional plastics.",
-    image_url: "https://via.placeholder.com/300x200?text=Eco",
+    image_url: ecofriedly,
   },
 ];
 
