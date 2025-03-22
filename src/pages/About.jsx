@@ -181,7 +181,7 @@ function About() {
             <motion.div
               whileHover={{ scale: 1.1, rotate: 10 }}
               className="absolute right-0 top-1/2 transform -translate-y-1/2 w-16 h-16 md:w-24 md:h-24 
-                bg-[#00bc72]/20 rounded-full items-center justify-center text-accent text-2xl md:visible hidden"
+                bg-[#00bc72]/20 rounded-full items-center justify-center text-accent text-2xl md:visible md:flex hidden"
             >
               🌍
             </motion.div>
@@ -213,7 +213,7 @@ function About() {
             <motion.div
               whileHover={{ scale: 1.1, rotate: -10 }}
               className="absolute left-0 top-1/2 transform -translate-y-1/2 w-16 h-16 md:w-24 md:h-24 
-                bg-[#004746]/20 rounded-full  items-center justify-center text-primary text-2xl md:visible hidden"
+                bg-[#004746]/20 rounded-full  items-center justify-center text-primary text-2xl md:visible md:flex hidden"
             >
               🔮
             </motion.div>
@@ -243,7 +243,7 @@ function About() {
             <motion.div
               whileHover={{ scale: 1.1, rotate: 10 }}
               className="absolute right-0 top-1/2 transform -translate-y-1/2 w-16 h-16 md:w-24 md:h-24 
-                bg-[#00bc72]/20 rounded-full  items-center justify-center text-accent text-2xl md:visible hidden"
+                bg-[#00bc72]/20 rounded-full  items-center justify-center text-accent text-2xl md:visible md:flex hidden"
             >
               🩺
             </motion.div>
@@ -273,7 +273,7 @@ function About() {
             <motion.div
               whileHover={{ scale: 1.1, rotate: -10 }}
               className="absolute left-0 top-1/2 transform -translate-y-1/2 w-16 h-16 md:w-24 md:h-24 
-                bg-[#004746]/20 rounded-full  items-center justify-center text-primary text-2xl md:visible hidden"
+                bg-[#004746]/20 rounded-full  items-center justify-center text-primary text-2xl md:visible md:flex hidden"
             >
               💪
             </motion.div>
@@ -304,7 +304,7 @@ function About() {
             <motion.div
               whileHover={{ scale: 1.1, rotate: 10 }}
               className="absolute right-0 top-1/2 transform -translate-y-1/2 w-16 h-16 md:w-24 md:h-24 
-                bg-[#00bc72]/20 rounded-full  items-center justify-center text-accent text-2xl md:visible hidden"
+                bg-[#00bc72]/20 rounded-full  items-center justify-center text-accent text-2xl md:visible md:flex hidden"
             >
               ⚙️
             </motion.div>
