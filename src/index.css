@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
-
+body {
+  font-family: "Poppins", sans-serif;
+}
 /* Default: Column layout and centered content for screens 1200px and below */
 .flex-custom {
   flex-direction: column !important; /* Override Tailwind's lg:flex-row */
@@ -63,6 +65,9 @@
 }
 .hover-text-fix:hover {
   color: var(--color-foreground) !important;
+}
+.hover-text-glow:hover {
+  color: var(--color-accent) !important;
 }
 /* Ensure this is in your global CSS file */
 @keyframes scroll {

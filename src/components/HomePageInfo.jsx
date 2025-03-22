@@ -7,8 +7,9 @@ const HomePageInfo = () => {
     <div className="flex flex-col lg:flex-row md:items-center gap-6 sm:gap-8 md:gap-10 max-w-full mx-auto p-4 sm:p-6 md:p-8 flex-custom">
       {/* Text Section (Takes Remaining Width) */}
       <div className="flex-1 flex flex-col text-center md:text-left px-4 sm:px-6 md:px-8 py-6 sm:py-8 text-custom-center text-custom-left">
-        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary">
-          {DetailingHomePage.title}
+        <h1 className="text-2xl md:text-4xl font-bold text-primary">
+          Welcome to {""}
+          <span className="text-accent">BioEnGene</span>
         </h1>
         <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-primary leading-relaxed font-medium">
           {DetailingHomePage.description}

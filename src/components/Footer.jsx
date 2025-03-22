@@ -55,7 +55,10 @@ function Footer() {
           </motion.div>
 
           {/* Logo (Center) */}
-          <motion.div variants={fadeInUp} className="flex-1 text-center">
+          <motion.div
+            variants={fadeInUp}
+            className="flex-1 text-center hidden md:block"
+          >
             <NavLink
               to="/"
               onClick={handleClick}
@@ -72,7 +75,7 @@ function Footer() {
             variants={fadeInUp}
             className="flex-1 text-center md:text-right"
           >
-            <h3 className="text-xl font-semibold text-accent mb-4 tracking-tight">
+            <h3 className="text-xl font-semibold text:center md:text-end text-accent mb-4 tracking-tight">
               Social Connect
             </h3>
             <div className="flex justify-center md:justify-end space-x-6">
@@ -84,7 +87,7 @@ function Footer() {
                 className="transition-transform duration-300"
               >
                 <img
-                  src="https://img.icons8.com/color/48/000000/facebook.png"
+                  src="https://img.icons8.com/ios-filled/48/000000/facebook.png"
                   className="w-10 h-10"
                   alt="Facebook"
                 />
@@ -97,22 +100,35 @@ function Footer() {
                 className="transition-transform duration-300"
               >
                 <img
-                  src="https://img.icons8.com/color/48/000000/instagram-new--v1.png"
+                  src="https://img.icons8.com/ios-filled/48/000000/instagram-new.png"
                   className="w-10 h-10"
                   alt="Instagram"
                 />
               </motion.a>
               <motion.a
-                href="https://twitter.com/BioEnGene"
+                href="https://www.linkedin.com/company/bioengene-iitkgp"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, rotate: 10 }}
                 className="transition-transform duration-300"
               >
                 <img
-                  src="https://img.icons8.com/color/48/000000/twitter--v1.png"
+                  src="https://img.icons8.com/ios-filled/48/000000/linkedin.png"
                   className="w-10 h-10"
-                  alt="Twitter"
+                  alt="LinkedIn"
+                />
+              </motion.a>
+              <motion.a
+                href="https://www.youtube.com/@bioengene-iitkgp" // Replace with actual YouTube URL
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                className="transition-transform duration-300"
+              >
+                <img
+                  src="https://img.icons8.com/ios-filled/48/000000/youtube-play.png"
+                  className="w-10 h-10"
+                  alt="YouTube"
                 />
               </motion.a>
             </div>
@@ -133,7 +149,7 @@ function Footer() {
           variants={fadeInUp}
           className="text-center text-[#fff]/70 text-sm"
         >
-          <p>© 2025 BioEnGene, IIT Kharagpur</p>
+          <p>© 2025 BioEnGene, IIT Kharagpur | All rights reserved</p>
         </motion.div>
       </div>
 

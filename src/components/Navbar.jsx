@@ -18,28 +18,26 @@ function Navbar() {
         className="text-xl sm:text-2xl font-bold tracking-tight text-primary"
         onClick={handleClick}
       >
-        BioEnGene
+        Bio<span className="text-accent">EnGene</span>
       </NavLink>
 
       {/* Center - Navigation Links (Hidden on small screens) */}
       <ul className="hidden md:flex flex-row space-x-6">
-        {["Home", "About", "Team", "Research", "Achievement", "Gallery"].map(
-          (item) => (
-            <li key={item}>
-              <NavLink
-                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                className={({ isActive }) =>
-                  `block text-primary text-lg font-medium py-2 md:py-0 hover:scale-110 transition-all duration-300 ease-in-out ${
-                    isActive ? "text-accent" : ""
-                  }`
-                }
-                onClick={handleClick}
-              >
-                {item}
-              </NavLink>
-            </li>
-          )
-        )}
+        {["Home", "Team", "Research", "Achievement", "Gallery"].map((item) => (
+          <li key={item}>
+            <NavLink
+              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              className={({ isActive }) =>
+                `block text-primary text-lg font-medium py-2 md:py-0 hover:scale-110 transition-all duration-300 ease-in-out ${
+                  isActive ? "text-accent" : ""
+                }`
+              }
+              onClick={handleClick}
+            >
+              {item}
+            </NavLink>
+          </li>
+        ))}
       </ul>
 
       {/* Right - Admin Button (Visible only on large screens) */}
@@ -68,27 +66,22 @@ function Navbar() {
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-white shadow-md md:hidden">
           <ul className="flex flex-col items-center space-y-4 py-4">
-            {[
-              "Home",
-              "About",
-              "Team",
-              "Research",
-              "Achievement",
-              "Gallery",
-            ].map((item) => (
-              <li key={item}>
-                <NavLink
-                  to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  className="block text-primary text-lg font-medium py-3"
-                  onClick={() => {
-                    setIsOpen(false);
-                    handleClick();
-                  }}
-                >
-                  {item}
-                </NavLink>
-              </li>
-            ))}
+            {["Home", "Team", "Research", "Achievement", "Gallery"].map(
+              (item) => (
+                <li key={item}>
+                  <NavLink
+                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    className="block text-primary text-lg font-medium py-3"
+                    onClick={() => {
+                      setIsOpen(false);
+                      handleClick();
+                    }}
+                  >
+                    {item}
+                  </NavLink>
+                </li>
+              )
+            )}
             {/* Admin Button Inside Dropdown on Mobile */}
             <li>
               <NavLink

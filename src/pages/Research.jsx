@@ -48,7 +48,7 @@ function Research() {
         initial="hidden"
         animate="visible"
         variants={staggerChildren}
-        className="relative py-24 px-6 md:px-12 bg-white flex items-center justify-center min-h-[80vh]"
+        className="relative py-10 px-6 md:px-12 bg-white flex items-center justify-center min-h-[10vh]"
       >
         <div className="max-w-7xl mx-auto text-center z-10">
           <motion.h1
@@ -120,11 +120,11 @@ function Research() {
           </p>
           <div className="flex justify-center">
             <a
-              href="#past-projects"
+              href="/tracer/"
               className="inline-block py-3 px-8 text-lg font-medium text-white bg-[#00bc72] 
                 rounded-full shadow-lg text-center hover:bg-[#0a5958] transition-all duration-300"
             >
-              Explore Past Projects
+              Explore...
             </a>
           </div>
         </motion.div>
@@ -155,7 +155,7 @@ function Research() {
               whileHover="hover"
               viewport={{ once: true }}
               onClick={() => setSelectedProject(project)}
-              className="relative bg-white rounded-2xl shadow-md border border-[#004746]/10 
+              className="relative bg-white rounded-2xl shadow-sm border border-[#004746]/10 
                 hover:border-[#00bc72]/30 transition-all duration-300 cursor-pointer overflow-hidden"
               style={{ fontFamily: "var(--font-primary)" }}
             >
@@ -227,10 +227,21 @@ function Research() {
             <h2 className="text-3xl font-bold text-primary mb-4">
               {selectedProject.title}
             </h2>
-            <p className="text-[#727272] text-lg leading-relaxed mb-6">
+            <p className="text-elevated text-lg leading-relaxed mb-6">
               {selectedProject.details}
             </p>
-
+            <p className="text-[#727272] text-lg leading-relaxed mb-6">
+              {selectedProject.extensive_research_report}
+            </p>
+            <div className="flex justify-center">
+              <a
+                href={selectedProject.project_url}
+                className="inline-block py-3 px-8 text-lg font-medium text-white bg-[#00bc72] 
+                rounded-full shadow-lg text-center hover:bg-[#0a5958] transition-all duration-300"
+              >
+                Explore
+              </a>
+            </div>
             {/* Add more content here if needed */}
           </motion.div>
         </motion.div>

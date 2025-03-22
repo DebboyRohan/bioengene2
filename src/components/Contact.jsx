@@ -53,14 +53,14 @@ function Contact() {
         initial="hidden"
         animate="visible"
         variants={staggerChildren}
-        className="relative pt-12 pb-8 sm:pt-16 sm:pb-10 md:pt-20 md:pb-12 lg:pt-24 lg:pb-16 xl:pt-28 min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex items-center justify-center px-4 sm:px-6 md:px-12"
+        className="relative pt-5 pb-5 sm:pt-16 sm:pb-10 md:pt-10 md:pb-5 lg:pt-10 lg:pb-5 xl:pt-20 min-h-[40vh] sm:min-h-[50vh] md:min-h-[10vh] flex items-center justify-center px-4 sm:px-6 md:px-12"
       >
         <div className="max-w-7xl mx-auto text-center z-10 w-full">
           <motion.h1
             variants={textFadeIn}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-primary mb-4 sm:mb-6 tracking-tight relative inline-block"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium text-primary mb-4 sm:mb-6 tracking-tight relative inline-block"
           >
-            Contact Us
+            Contact <span className="text-accent">Us</span>
             <motion.span
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}

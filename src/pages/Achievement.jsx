@@ -7,42 +7,26 @@ const achievements = [
     year: "2019",
     title: "Founded BioEnGene",
     description:
-      "Established the BioEnGene team at IIT Kharagpur to advance biotechnology research.",
+      "Awarded in Technology Students Gymkhana annual award ceremony with prize money.",
   },
   {
     id: 2,
     year: "2020",
     title: "First Research Grant",
-    description:
-      "Secured initial funding for biofuel optimization project from a national agency.",
+    description: "SIH Hardware: Selected for 2nd round",
   },
   {
     id: 3,
     year: "2021",
     title: "Published in Nature",
     description:
-      "Team’s work on cancer diagnostics featured in a prestigious journal.",
+      "Our member got offer for an Internship in University of Warwick",
   },
   {
     id: 4,
     year: "2022",
     title: "Tracer Project Launch",
-    description:
-      "Initiated the flagship Tracer project for precision biotechnology.",
-  },
-  {
-    id: 5,
-    year: "2023",
-    title: "National Award",
-    description:
-      "Received a national award for innovation in sustainable materials.",
-  },
-  {
-    id: 6,
-    year: "2024",
-    title: "Global Collaboration",
-    description:
-      "Partnered with international institutes for advanced genetic research.",
+    description: "Inter IIT Gold Medal",
   },
 ];
 
@@ -70,7 +54,7 @@ function Achievement() {
         initial="hidden"
         animate="visible"
         variants={staggerChildren}
-        className="relative py-24 px-6 md:px-12 bg-white flex items-center justify-center min-h-[80vh]"
+        className="relative pt-30 px-6 md:px-12 bg-white flex items-center justify-center min-h-[10vh]"
       >
         <div className="max-w-7xl mx-auto text-center z-10">
           <motion.h1

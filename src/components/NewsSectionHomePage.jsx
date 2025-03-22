@@ -16,7 +16,8 @@ function NewsSectionHomePage() {
   }, []);
 
   return (
-    <div className="overflow-hidden text-primary py-4 sm:py-5 md:py-6">
+    <div className="relative overflow-hidden text-primary py-4 sm:py-5 md:py-6">
+      {/* Ticker container */}
       <div className="relative w-full">
         <div
           ref={tickerRef}
@@ -28,12 +29,33 @@ function NewsSectionHomePage() {
               href={news.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium hover:text-accent transition-all duration-300 px-2 sm:px-3 md:px-4"
+              className="group text-base sm:text-lg lg:text-xl font-medium hover:text-accent transition-all duration-500 ease-in-out px-3 py-2 sm:px-3 md:px-4 border rounded-full hover-text-fix hover:bg-[var(--color-elevated)] "
             >
-              {news.info}
+              <span className="inline-block transition-all duration-300 ease-in-out group-hover:text-lg group-hover:md:text-xl group-hover:lg:text-2xl group-hover:scale-102">
+                {news.info}
+              </span>
+            </a>
+          ))}
+          {newsItems.map((news, index) => (
+            <a
+              key={index}
+              href={news.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group text-base sm:text-lg lg:text-xl font-medium hover:text-accent transition-all duration-500 ease-in-out px-3 py-2 sm:px-3 md:px-4 border rounded-full hover-text-fix hover:bg-[var(--color-elevated)]"
+            >
+              <span className="inline-block transition-all duration-300 ease-in-out group-hover:text-lg group-hover:md:text-xl group-hover:lg:text-2xl group-hover:scale-102">
+                {news.info}
+              </span>
             </a>
           ))}
         </div>
+        {/* Solid covers (20% each side of the screen) */}
+        <div className="absolute top-0 left-0 w-[20%] h-full md:bg-white pointer-events-none z-20"></div>
+        <div className="absolute top-0 right-0 w-[20%] h-full md:bg-white pointer-events-none z-20"></div>
+        {/* Gradient fade effect just inside the covers */}
+        <div className="absolute top-0 left-[20%] w-[10%] h-full md:bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
+        <div className="absolute top-0 right-[20%] w-[10%] h-full md:bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
       </div>
     </div>
   );

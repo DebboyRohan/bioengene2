@@ -3,14 +3,14 @@ import HomePageHeroSection from "../components/HomePageHeroSection";
 import NewsSectionHomePage from "../components/NewsSectionHomePage";
 import HomePageInfo from "../components/HomePageInfo";
 import Contact from "../components/Contact";
-import Tracer from "../components/Tracer";
+import About from "./About";
 const Home = () => {
   return (
     <div>
       <HomePageHeroSection />
       <NewsSectionHomePage />
       <HomePageInfo />
-      <Tracer />
+      <About />
       <Contact />
     </div>
   );
