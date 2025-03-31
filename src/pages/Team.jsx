@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { cardsData, defaultpic, biotechdept } from "../assets/asset.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { defaultpic } from "../assets/asset.js"; // Keep defaultpic for fallback
 
 // Animation variants
 const fadeInUp = {
@@ -61,39 +62,49 @@ const buttonVariants = {
 };
 
 function Team() {
-  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [selectedTeam, setSelectedTeam] = useState("Faculty Team");
+  const [teams, setTeams] = useState({
+    "Faculty Team": [],
+    "Core Team": [],
+    "Spons Team": [],
+    "Web Dev Team": [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Group team members by category
-  const teams = {
-    "PI Team": [
-      {
-        id: "pi1",
-        name: "TBD",
-        email: "Coming Soon",
-        designation: "Principal Investigator",
-        image_url: defaultpic,
-      },
-      {
-        id: "pi2",
-        name: "TBD",
-        email: "Coming Soon",
-        designation: "Principal Investigator",
-        image_url: defaultpic,
-      },
-      {
-        id: "pi3",
-        name: "TBD",
-        email: "Coming Soon",
-        designation: "Principal Investigator",
-        image_url: biotechdept,
-      },
-    ],
-    "Core Team": cardsData.filter((member) => member.team === "Core Team"),
-    "Spons Team": cardsData.filter((member) => member.team === "Spons Team"),
-    "Web Dev Team": cardsData.filter(
-      (member) => member.team === "Web Dev Team"
-    ),
-  };
+  // Fetch team members from the backend
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      try {
+        const response = await axios.get("https://172.16.3.23:5000/api/team");
+        const teamMembers = response.data;
+
+        // Group team members by team name
+        const groupedTeams = {
+          "Faculty Team": teamMembers.filter(
+            (member) => member.team === "Faculty Team"
+          ),
+          "Core Team": teamMembers.filter(
+            (member) => member.team === "Core Team"
+          ),
+          "Spons Team": teamMembers.filter(
+            (member) => member.team === "Spons Team"
+          ),
+          "Web Dev Team": teamMembers.filter(
+            (member) => member.team === "Web Dev Team"
+          ),
+        };
+
+        setTeams(groupedTeams);
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to fetch team members");
+        setLoading(false);
+      }
+    };
+
+    fetchTeamMembers();
+  }, []);
 
   return (
     <div className="bg-white text-[#004746] overflow-hidden">
@@ -121,8 +132,8 @@ function Team() {
             variants={fadeInUp}
             className="text-xl md:text-2xl leading-relaxed text-[#727272] max-w-3xl mx-auto"
           >
-            Discover the talented individuals powering BioEnGene’s mission in
-            biotechnology and innovation.
+            Meet the passionate individuals driving BioEnGene’s mission in
+            bioengineering and innovation.
           </motion.p>
         </div>
         {/* Subtle Animated Background Elements */}
@@ -143,7 +154,7 @@ function Team() {
       {/* Team Sections with Buttons */}
       <div
         id="team-content"
-        className="py-20 px-6 md:px-12 max-w-7xl mx-auto bg-white"
+        className="py-5 px-6 md:px-12 max-w-7xl mx-auto bg-white"
       >
         {/* Team Selection Buttons */}
         <motion.div
@@ -169,142 +180,166 @@ function Team() {
           ))}
         </motion.div>
 
+        {/* Loading and Error States */}
+        {loading && (
+          <div className="text-center text-xl text-[#727272] py-10">
+            Loading team members...
+          </div>
+        )}
+        {error && (
+          <div className="text-center text-xl text-red-500 py-10">{error}</div>
+        )}
+
         {/* Team Members Display */}
-        <AnimatePresence>
-          {selectedTeam && (
-            <motion.section
-              key={selectedTeam}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              variants={staggerChildren}
-              className="mb-16"
-            >
-              <motion.h2
-                variants={fadeInUp}
-                className="text-3xl md:text-4xl font-bold text-primary mb-10 tracking-tight text-center relative"
+        {!loading && !error && (
+          <AnimatePresence>
+            {selectedTeam && (
+              <motion.section
+                key={selectedTeam}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={staggerChildren}
+                className="mb-16"
               >
-                {selectedTeam}
-                <span className="absolute bottom-[-8px] left-1/2 transform -translate-x-1/2 w-16 h-1 bg-[#00bc72]/50 rounded-full" />
-              </motion.h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                {teams[selectedTeam].map((member) => (
-                  <motion.div
-                    key={member.id}
-                    variants={cardVariants}
-                    initial="hidden"
-                    animate="visible"
-                    whileHover="hover"
-                    className="relative bg-white rounded-xl shadow-md group overflow-hidden"
-                    style={{ fontFamily: "var(--font-primary)" }}
-                  >
-                    {/* Glowing Border on Hover */}
-                    <motion.div
-                      className="absolute inset-0 rounded-xl border-2 border-transparent"
-                      initial={{ borderColor: "rgba(0, 188, 114, 0)" }}
-                      whileHover={{
-                        borderColor: "rgba(0, 188, 114, 0.3)",
-                        transition: { duration: 0.3 },
-                      }}
-                    />
-
-                    {/* Subtle Background Gradient on Hover */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-[#00bc72]/5 to-transparent"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-
-                    {/* Card Content */}
-                    <div className="p-6 text-center relative z-10">
-                      {/* Circular Image */}
+                <motion.h2
+                  variants={fadeInUp}
+                  className="text-3xl md:text-4xl font-bold text-primary mb-10 tracking-tight text-center relative"
+                >
+                  {selectedTeam}
+                  <span className="absolute bottom-[-8px] left-1/2 transform -translate-x-1/2 w-16 h-1 bg-[#00bc72]/50 rounded-full" />
+                </motion.h2>
+                {teams[selectedTeam].length === 0 ? (
+                  <div className="text-center text-xl text-[#727272] py-10">
+                    No members found in {selectedTeam}.
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    {teams[selectedTeam].map((member) => (
                       <motion.div
-                        className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-2 border-[#00bc72]/20"
-                        variants={imageVariants}
+                        key={member.id}
+                        variants={cardVariants}
+                        initial="hidden"
+                        animate="visible"
                         whileHover="hover"
+                        className="relative bg-white rounded-xl shadow-md group overflow-hidden"
+                        style={{ fontFamily: "var(--font-primary)" }}
                       >
-                        <motion.img
-                          src={member.image_url}
-                          alt={member.name}
-                          className="w-full h-full object-cover"
+                        {/* Glowing Border on Hover */}
+                        <motion.div
+                          className="absolute inset-0 rounded-xl border-2 border-transparent"
+                          initial={{ borderColor: "rgba(0, 188, 114, 0)" }}
+                          whileHover={{
+                            borderColor: "rgba(0, 188, 114, 0.3)",
+                            transition: { duration: 0.3 },
+                          }}
                         />
-                      </motion.div>
 
-                      {/* Name */}
-                      <motion.h3
-                        variants={textFade}
-                        className="text-xl font-semibold text-primary mb-2 group-hover:text-[#00bc72] transition-colors duration-300"
-                      >
-                        {member.name}
-                      </motion.h3>
+                        {/* Subtle Background Gradient on Hover */}
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-t from-[#00bc72]/5 to-transparent"
+                          initial={{ opacity: 0 }}
+                          whileHover={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
 
-                      {/* Designation */}
-                      <motion.p
-                        variants={designationFade}
-                        className="text-[#727272] text-sm mb-4 group-hover:text-[#0a5958] transition-colors duration-300"
-                      >
-                        {member.designation}
-                      </motion.p>
-
-                      {/* Social Icons */}
-                      <motion.div
-                        className="flex justify-center gap-4"
-                        variants={staggerChildren}
-                      >
-                        {/* Email Icon */}
-                        <motion.a
-                          href={`mailto:${member.email}`}
-                          variants={iconFade}
-                          className="text-[#727272] group-hover:text-[#00bc72] transition-colors duration-300"
-                          title={member.email}
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="w-6 h-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
+                        {/* Card Content */}
+                        <div className="p-6 text-center relative z-10">
+                          {/* Circular Image */}
+                          <motion.div
+                            className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-2 border-[#00bc72]/20"
+                            variants={imageVariants}
+                            whileHover="hover"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M3 8l9-6 9 6v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"
+                            <motion.img
+                              src={
+                                member.image_url
+                                  ? `https://172.16.3.23:5000${member.image_url}`
+                                  : defaultpic
+                              }
+                              alt={member.name}
+                              className="w-full h-full object-cover"
                             />
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M3 8l9 6 9-6"
-                            />
-                          </svg>
-                        </motion.a>
-                        {/* LinkedIn Icon */}
-                        <motion.a
-                          href={member.linkedin_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          variants={iconFade}
-                          className="text-[#727272] group-hover:text-[#00bc72] transition-colors duration-300"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="w-6 h-6"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
+                          </motion.div>
+
+                          {/* Name */}
+                          <motion.h3
+                            variants={textFade}
+                            className="text-xl font-semibold text-primary mb-2 group-hover:text-[#00bc72] transition-colors duration-300"
                           >
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-1.337-.027-3.063-1.867-3.063-1.867 0-2.154 1.459-2.154 2.966v5.701h-3v-11h2.879v1.508h.041c.401-.758 1.379-1.558 2.837-1.558 3.037 0 3.604 2 3.604 4.604v6.446z" />
-                          </svg>
-                        </motion.a>
+                            {member.name}
+                          </motion.h3>
+
+                          {/* Designation */}
+                          <motion.p
+                            variants={designationFade}
+                            className="text-[#727272] text-sm mb-4 group-hover:text-[#0a5958] transition-colors duration-300"
+                          >
+                            {member.designation}
+                          </motion.p>
+
+                          {/* Social Icons */}
+                          <motion.div
+                            className="flex justify-center gap-4"
+                            variants={staggerChildren}
+                          >
+                            {/* Email Icon */}
+                            <motion.a
+                              href={`mailto:${member.email}`}
+                              variants={iconFade}
+                              className="text-[#727272] group-hover:text-[#00bc72] transition-colors duration-300"
+                              title={member.email}
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-6 h-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M3 8l9-6 9 6v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"
+                                />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M3 8l9 6 9-6"
+                                />
+                              </svg>
+                            </motion.a>
+                            {/* LinkedIn Icon */}
+                            {member.linkedin_url && (
+                              <motion.a
+                                href={member.linkedin_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                variants={iconFade}
+                                className="text-[#727272] group-hover:text-[#00bc72] transition-colors duration-300"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="w-6 h-6"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-1.337-.027-3.063-1.867-3.063-1.867 0-2.154 1.459-2.154 2.966v5.701h-3v-11h2.879v1.508h.041c.401-.758 1.379-1.558 2.837-1.558 3.037 0 3.604 2 3.604 4.604v6.446z" />
+                                </svg>
+                              </motion.a>
+                            )}
+                          </motion.div>
+                        </div>
                       </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.section>
-          )}
-        </AnimatePresence>
+                    ))}
+                  </div>
+                )}
+              </motion.section>
+            )}
+          </AnimatePresence>
+        )}
       </div>
     </div>
   );

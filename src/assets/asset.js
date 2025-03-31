@@ -7,12 +7,52 @@ import herosectionhome2 from "../assets/images/herosectionhome2.png";
 import biofuel from "../assets/images/biofuel.jpg";
 import cancer from "../assets/images/cancer.jpg";
 import ecofriedly from "../assets/images/ecofriendly.jpg";
-export { defaultpic, biotechdept, herosectionhome2 };
+import agneyoganguly from "../assets/images/TeamMembers/AgneyoGanguly.jpg";
+import mainakbose from "../assets/images/TeamMembers/MainakBose.jpeg";
+import riddhimandhar from "../assets/images/TeamMembers/RiddhimanDhar.png";
+import riteshgosh from "../assets/images/TeamMembers/RiteshGosh.png";
+import vinaypatel from "../assets/images/TeamMembers/VinayPatel.png";
+import afeerah from "../assets/images/TeamMembers/Afeerah.jpg";
+import akshara from "../assets/images/TeamMembers/Akshara.jpg";
+import krishna from "../assets/images/TeamMembers/Krishna.jpg";
+import ayush from "../assets/images/TeamMembers/Ayush.jpg";
+import bhumika from "../assets/images/TeamMembers/bhumika.jpeg";
+import jishnumanglam from "../assets/images/TeamMembers/jishnumanglam.jpeg";
+import kairavbarua from "../assets/images/TeamMembers/kairavbarua.jpeg";
+import snehanshsen from "../assets/images/TeamMembers/snehanshsen.jpeg";
+import rohan from "../assets/images/TeamMembers/rohan.jpeg";
+import vihar from "../assets/images/TeamMembers/vihar.jpeg";
+import jitendrabhati from "../assets/images/TeamMembers/jitendrabhati.jpeg";
+import bhanvi from "../assets/images/TeamMembers/bhanvi.jpeg";
+import shreya from "../assets/images/TeamMembers/shreya.jpeg";
+import gal1 from "../assets/images/gallery/gal1.jpg";
+import gal2 from "../assets/images/gallery/gal2.jpg";
+import gal3 from "../assets/images/gallery/gal3.jpg";
+import proj1 from "../assets/images/proj1.jpg";
+import proj2 from "../assets/images/proj2.png";
+import bioengenelogo from "../assets/images/bioengenelogo.png";
+import homepagebanner from "../assets/images/homepagebanner.png";
+// import r1 form "../../../../../frontend/src/assets/images/research/r1.pdf";
+// import r2 form "../../../../../frontend/src/assets/images/research/r2.pdf";
+// import r3 form "../../../../../frontend/src/assets/images/research/r3.pdf";
+
+export {
+  defaultpic,
+  biotechdept,
+  herosectionhome2,
+  agneyoganguly,
+  mainakbose,
+  riddhimandhar,
+  riteshgosh,
+  vinaypatel,
+  bioengenelogo,
+  homepagebanner,
+};
 //Home page informations
 export const HeroSectionInfoHomePage = {
   descprition:
-    "BioEnGene (Engaging Genes for Innovation & Entrepreneurship) is a team of UG and PG students of our institute from various disciplines who came together as a research team to contribute in the field of Bio-Engineering.",
-  image: herosectionhome2,
+    "BioEnGene is a team of undergraduate and postgraduate students from diverse disciplines at IIT Kharagpur, united by a shared passion for biological engineering.",
+  image: homepagebanner,
   moto: `Re-engineering Nature’s Blueprint.`,
 };
 export const NewsHomePage = [
@@ -26,9 +66,9 @@ export const DetailingHomePage = {
   title: "BioEnGene: ",
   subtitle: "Innovating at the Frontiers of Biotechnology",
   description:
-    "BioEnGene, a student research group at the Indian Institute of Technology Kharagpur, is dedicated to exploring new frontiers in biotechnology, genetic engineering, and bioprocess innovation.",
+    "We are a student-led research group at IIT Kharagpur, committed to addressing global challenges in energy, healthcare, and the environment through biological engineering.",
   subDescription:
-    "Our goal is to contribute to meaningful advancements in biosciences and biotechnology, with a strong focus on sustainability , practical healthcare solutions, and real-world industrial applications.",
+    "Our work spans diverse fields, including synthetic biology, genetic engineering, and point-of-care diagnostics. Guided by curiosity and innovation, we strive to push scientific boundaries, share knowledge, and create a lasting impact.",
 };
 export const slideData = [
   {
@@ -46,8 +86,8 @@ export const cardsData = [
     email: "jishnu.manglam@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/jishnumanglam",
     team: "Core Team",
-    designation: "Core Research Member",
-    image_url: defaultpic,
+    designation: "Team Lead",
+    image_url: jishnumanglam,
   },
   {
     id: 2,
@@ -55,8 +95,8 @@ export const cardsData = [
     email: "kairav.barua@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/kairav-barua-9332b8283",
     team: "Core Team",
-    designation: "Core Research Member",
-    image_url: defaultpic,
+    designation: "Research Lead",
+    image_url: kairavbarua,
   },
   {
     id: 3,
@@ -64,8 +104,8 @@ export const cardsData = [
     email: "afeerahnaseem@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/afeerah-naseem",
     team: "Core Team",
-    designation: "Core Research Member",
-    image_url: defaultpic,
+    designation: "Senior Member",
+    image_url: afeerah,
   },
   {
     id: 4,
@@ -73,8 +113,8 @@ export const cardsData = [
     email: "sensnehansh20@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/snehansh-sen-3961a4265",
     team: "Core Team",
-    designation: "Core Research Member",
-    image_url: defaultpic,
+    designation: "Senior Member",
+    image_url: snehanshsen,
   },
   {
     id: 5,
@@ -82,8 +122,8 @@ export const cardsData = [
     email: "ayushmunshi78@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/ayush-munshi-a7181a301",
     team: "Core Team",
-    designation: "Core Research Member",
-    image_url: defaultpic,
+    designation: "Core Member",
+    image_url: ayush,
   },
   {
     id: 6,
@@ -91,8 +131,8 @@ export const cardsData = [
     email: "aksharasankranthi@kgpian.iitkgp.ac.in",
     linkedin_url: "https://www.linkedin.com/in/akshara-sankranthi-796243307",
     team: "Core Team",
-    designation: "Core Research Member",
-    image_url: defaultpic,
+    designation: "Core Member",
+    image_url: akshara,
   },
   {
     id: 7,
@@ -100,8 +140,8 @@ export const cardsData = [
     email: "kumarbhanvi@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/bhanvi-kumar-575297303",
     team: "Core Team",
-    designation: "Core Research Member",
-    image_url: defaultpic,
+    designation: "Core Member",
+    image_url: bhanvi,
   },
   {
     id: 8,
@@ -109,8 +149,8 @@ export const cardsData = [
     email: "Kant4285@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/krishna-kant-86164a240",
     team: "Core Team",
-    designation: "Core Research Member",
-    image_url: defaultpic,
+    designation: "Core Member",
+    image_url: krishna,
   },
   {
     id: 9,
@@ -118,8 +158,8 @@ export const cardsData = [
     email: "everything.ineed05@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/shreya-mohanty-b3b8a4297",
     team: "Core Team",
-    designation: "Core Research Member",
-    image_url: defaultpic,
+    designation: "Core Member",
+    image_url: shreya,
   },
   {
     id: 10,
@@ -127,8 +167,8 @@ export const cardsData = [
     email: "bhumikamarmat@kgpian.iitkgp.ac.in",
     linkedin_url: "https://www.linkedin.com/in/bhumikamarmat",
     team: "Spons Team",
-    designation: "Spons Lead",
-    image_url: defaultpic,
+    designation: "Sponsorship Lead",
+    image_url: bhumika,
   },
   {
     id: 11,
@@ -136,8 +176,8 @@ export const cardsData = [
     email: "vihardavuluri@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/vihar-davuluri-40254326a",
     team: "Spons Team",
-    designation: "Spons Lead",
-    image_url: defaultpic,
+    designation: "Sponsorship Lead",
+    image_url: vihar,
   },
   {
     id: 12,
@@ -145,8 +185,8 @@ export const cardsData = [
     email: "bhatijitendra2022@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/jitendra-bhati123iitkgp",
     team: "Web Dev Team",
-    designation: "Web Dev Member",
-    image_url: defaultpic,
+    designation: "Lead Developer",
+    image_url: jitendrabhati,
   },
   {
     id: 13,
@@ -154,8 +194,8 @@ export const cardsData = [
     email: "rohankumarpandey234@gmail.com",
     linkedin_url: "https://www.linkedin.com/in/rohan2311",
     team: "Web Dev Team",
-    designation: "Web Dev Member",
-    image_url: defaultpic,
+    designation: "Lead Developer",
+    image_url: rohan,
   },
 ];
 
@@ -164,107 +204,43 @@ export const pastProjects = [
   {
     id: 1,
     title: "Non-invasive Method of Blood Glucose Monitoring",
-    description:
-      "A pioneering approach to monitor blood glucose levels without invasive procedures, leveraging advanced biosensors and optical technology.",
-    details:
-      "This project developed a non-invasive glucose monitoring system using near-infrared spectroscopy and machine learning algorithms. By analyzing light absorption patterns in the skin, the system accurately estimates blood glucose levels with a 95% correlation to traditional methods, eliminating the need for finger pricks. The prototype is compact, wearable, and suitable for continuous monitoring, offering significant improvements in patient comfort and diabetes management.",
-    extensive_research_report:
-      "The research focused on overcoming the limitations of invasive glucose monitoring, a persistent challenge in diabetes care. Our team integrated a near-infrared (NIR) spectroscopy module with a custom-built biosensor array, calibrated using a dataset of 10,000 patient samples. The system operates by emitting NIR light (wavelengths 850-1300 nm) through the skin, where glucose molecules absorb specific frequencies. Signal processing was enhanced via a convolutional neural network (CNN), achieving a mean absolute relative difference (MARD) of 8.2%, well within clinical acceptability. In trials with 150 participants, the device demonstrated robustness across diverse skin types and ambient conditions. Challenges included mitigating interference from water and hemoglobin, addressed through multi-wavelength analysis. Future work aims to miniaturize the hardware further and integrate it with smartphone applications for real-time data tracking. This technology has the potential to revolutionize diabetes management, reducing healthcare costs and improving quality of life.",
-    image_url: biofuel, // Assuming this is a placeholder; replace with relevant image if needed
-    project_url: "https://www.example.com/research/glucose-monitoring", // Replace with actual project URL
+    description: "",
+    details: "",
+    extensive_research_report: "",
+    image_url: proj1, // Assuming this is a placeholder; replace with relevant image if needed
+    project_url: "/assets/files/research/r1.pdf", // Replace with actual project URL
   },
   {
     id: 2,
     title: "Single Strip Estimation of Multiple Parameters",
-    description:
-      "An innovative diagnostic tool designed to measure multiple health parameters simultaneously using a single test strip, enhancing efficiency in medical diagnostics.",
-    details:
-      "This project engineered a multifunctional test strip capable of detecting glucose, cholesterol, and hemoglobin levels from a single blood sample. Utilizing microfluidic channels and bioengineered enzymes, the strip provides results in under 10 minutes with 98% accuracy compared to lab standards. This technology streamlines point-of-care testing, making it ideal for resource-limited settings and rapid health assessments.",
-    extensive_research_report:
-      "The objective was to develop a cost-effective, all-in-one diagnostic platform to reduce the complexity of multi-parameter testing. The strip incorporates three distinct reaction zones, each embedded with specific enzymes (glucose oxidase, cholesterol oxidase, and a hemoglobin-binding aptamer) within a microfluidic network. A 2 microliter blood sample is wicked across the strip, triggering colorimetric reactions measured by a portable reader. Calibration against 5,000 clinical samples yielded a sensitivity of 97% and specificity of 99%, validated through double-blind studies. The primary innovation lies in the stabilization of enzymes on a cellulose matrix, ensuring shelf-life stability for 12 months under ambient conditions. Field tests in rural clinics demonstrated a 50% reduction in diagnostic time compared to sequential testing. Limitations include potential cross-reactivity between analytes, currently mitigated by spatial separation and chemical inhibitors. Future iterations will expand the parameter set to include kidney function markers and integrate AI-driven result interpretation.",
-    image_url: cancer, // Assuming this is a placeholder; replace with relevant image if needed
-    project_url: "https://www.example.com/research/diagnostics", // Replace with actual project URL
-  },
-  {
-    id: 3,
-    title: "Energy/Renewable Energy",
-    description:
-      "A research initiative to harness renewable energy through bioengineered systems, focusing on sustainable biofuel production and energy-efficient materials.",
-    details:
-      "This project optimized biofuel production by engineering photosynthetic microorganisms to enhance lipid synthesis, achieving a 35% increase in energy yield per biomass unit. Additionally, it developed a bio-inspired solar panel coating that improves light absorption by 20%, contributing to renewable energy scalability. These advancements support a transition to cleaner, more efficient energy systems.",
-    extensive_research_report:
-      "This study aimed to address global energy demands through bioengineering and biomimicry. The biofuel component involved genetically modifying Chlorella vulgaris to overexpress lipid biosynthesis genes, resulting in a strain producing 45% more triglycerides than the wild type. Fermentation trials in a 100-liter bioreactor showed a yield of 0.9 g/L/h, surpassing industry benchmarks by 35%. Concurrently, the renewable energy arm explored a nanostructured coating inspired by leaf surface morphology, applied to silicon solar cells. This coating, synthesized via a sol-gel process, increased photon capture efficiency from 70% to 84%, as confirmed by spectrometry analysis across 300-1100 nm wavelengths. Lifecycle assessments indicated a 25% reduction in carbon footprint compared to conventional biofuel and solar technologies. Challenges included maintaining genetic stability in microorganisms and scaling the coating process, both addressed through iterative design. The combined approach offers a dual-pathway strategy for renewable energy, with applications in transportation fuels and grid-scale power generation.",
-    image_url: ecofriedly, // Assuming this is a placeholder; replace with relevant image if needed
-    project_url: "https://www.example.com/research/energy", // Replace with actual project URL
+    description: "",
+    details: "",
+    extensive_research_report: "",
+    image_url: proj2, // Assuming this is a placeholder; replace with relevant image if needed
+    project_url: "/assets/files/research/r2.pdf", // Replace with actual project URL
   },
 ];
 
-export const tracerScreenshots = [
-  {
-    id: 1,
-    title: "Tracer Dashboard",
-    screenshot: "https://via.placeholder.com/400x300?text=Tracer+Dashboard",
-    liveUrl: "https://www.tesla.com/", // Replace with actual Tracer page URL
-  },
-  {
-    id: 2,
-    title: "Tracer Analytics",
-    screenshot: "https://via.placeholder.com/400x300?text=Tracer+Analytics",
-    liveUrl: "https://example.com/tracer/analytics",
-  },
-  {
-    id: 3,
-    title: "Tracer Settings",
-    screenshot: "https://via.placeholder.com/400x300?text=Tracer+Settings",
-    liveUrl: "https://example.com/tracer/settings",
-  },
-  {
-    id: 4,
-    title: "Tracer Reports",
-    screenshot: "https://via.placeholder.com/400x300?text=Tracer+Reports",
-    liveUrl: "https://example.com/tracer/reports",
-  },
-];
 //Achievements Page Information
 
 //Gallery
 export const galleryImages = [
   {
     id: 1,
-    src: biotechdept,
+    src: gal1,
     alt: "Biotech Lab 1",
-    caption: "Advanced Research Lab",
+    caption: "IGEM 2015: KGP",
   },
   {
     id: 2,
-    src: biotechdept,
+    src: gal2,
     alt: "Biotech Lab 2",
-    caption: "Genetic Engineering Setup",
+    caption: "IGEM 2015: Biotech",
   },
   {
     id: 3,
-    src: biotechdept,
+    src: gal3,
     alt: "Biotech Lab 3",
-    caption: "Team Collaboration",
-  },
-  {
-    id: 4,
-    src: biotechdept,
-    alt: "Biotech Lab 4",
-    caption: "Experimental Trials",
-  },
-  {
-    id: 5,
-    src: biotechdept,
-    alt: "Biotech Lab 5",
-    caption: "Innovative Equipment",
-  },
-  { id: 6, src: biotechdept, alt: "Biotech Lab 6", caption: "Field Research" },
-  { id: 7, src: biotechdept, alt: "Biotech Lab 7", caption: "Data Analysis" },
-  {
-    id: 8,
-    src: biotechdept,
-    alt: "Biotech Lab 8",
-    caption: "Presentation Day",
+    caption: "IGEM Area",
   },
 ];

@@ -1,63 +1,99 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { NewsHomePage } from "../assets/asset.js";
+import { motion } from "framer-motion";
 
 function NewsSectionHomePage() {
-  const tickerRef = useRef(null);
   const [newsItems, setNewsItems] = useState(NewsHomePage);
 
   useEffect(() => {
-    setNewsItems([...NewsHomePage]); // Ensures reactivity
-
-    // Duplicate items for seamless looping if needed
-    const ticker = tickerRef.current;
-    if (ticker && ticker.scrollWidth <= ticker.clientWidth * 2) {
-      setNewsItems([...NewsHomePage, ...NewsHomePage]);
-    }
+    setNewsItems([...NewsHomePage]);
   }, []);
 
+  // Animation variants for the card
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    hover: {
+      y: -5,
+      scale: 1.02,
+      boxShadow: "0 10px 20px rgba(0, 188, 114, 0.2)",
+      transition: { duration: 0.3 },
+    },
+  };
+
+  // Animation variants for the "Read More" link
+  const linkVariants = {
+    initial: { x: 0, color: "#00bc72" },
+    hover: {
+      x: 5,
+      color: "#00a060", // Slightly darker shade for hover
+      transition: { duration: 0.3, ease: "easeOut" },
+    },
+    tap: {
+      scale: 0.95,
+      transition: { duration: 0.2 },
+    },
+  };
+
   return (
-    <div className="relative overflow-hidden text-primary py-4 sm:py-5 md:py-6">
-      {/* Ticker container */}
-      <div className="relative w-full">
-        <div
-          ref={tickerRef}
-          className="flex gap-4 sm:gap-6 md:gap-8 animate-scroll whitespace-nowrap"
+    <section className="py-12 sm:py-16 md:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary text-center mb-10 sm:mb-12 md:mb-16"
         >
+          Latest News
+        </motion.h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {newsItems.map((news, index) => (
-            <a
+            <motion.div
               key={index}
-              href={news.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group text-base sm:text-lg lg:text-xl font-medium hover:text-accent transition-all duration-500 ease-in-out px-3 py-2 sm:px-3 md:px-4 border rounded-full hover-text-fix hover:bg-[var(--color-elevated)] "
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover="hover"
+              className="bg-white border border-[#00bc72]/20 rounded-xl p-6 relative overflow-hidden"
             >
-              <span className="inline-block transition-all duration-300 ease-in-out group-hover:text-lg group-hover:md:text-xl group-hover:lg:text-2xl group-hover:scale-102">
+              {/* Decorative element */}
+              <div className="absolute top-0 left-0 w-2 h-full bg-[#00bc72]/30" />
+
+              {/* News content */}
+              <h3 className="text-lg md:text-xl font-semibold text-primary mb-3 line-clamp-2">
                 {news.info}
-              </span>
-            </a>
-          ))}
-          {newsItems.map((news, index) => (
-            <a
-              key={index}
-              href={news.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group text-base sm:text-lg lg:text-xl font-medium hover:text-accent transition-all duration-500 ease-in-out px-3 py-2 sm:px-3 md:px-4 border rounded-full hover-text-fix hover:bg-[var(--color-elevated)]"
-            >
-              <span className="inline-block transition-all duration-300 ease-in-out group-hover:text-lg group-hover:md:text-xl group-hover:lg:text-2xl group-hover:scale-102">
-                {news.info}
-              </span>
-            </a>
+              </h3>
+
+              {/* Date or source */}
+              <p className="text-sm text-[#727272] mb-4">
+                {news.date || `Source: ${news.source || "BioEnGene"}`}
+              </p>
+
+              {/* Read More link */}
+              <div className="flex items-center justify-between">
+                <motion.a
+                  href={news.link || "#"} // Use news.link if available, otherwise "#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variants={linkVariants}
+                  initial="initial"
+                  whileHover="hover"
+                  whileTap="tap"
+                  className="text-[#00bc72] text-sm font-medium"
+                >
+                  Read More
+                </motion.a>
+              </div>
+            </motion.div>
           ))}
         </div>
-        {/* Solid covers (20% each side of the screen) */}
-        <div className="absolute top-0 left-0 w-[20%] h-full md:bg-white pointer-events-none z-20"></div>
-        <div className="absolute top-0 right-0 w-[20%] h-full md:bg-white pointer-events-none z-20"></div>
-        {/* Gradient fade effect just inside the covers */}
-        <div className="absolute top-0 left-[20%] w-[10%] h-full md:bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
-        <div className="absolute top-0 right-[20%] w-[10%] h-full md:bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
       </div>
-    </div>
+    </section>
   );
 }
 

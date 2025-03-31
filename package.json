@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "bioengene-tracer",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,25 +10,47 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@tabler/icons-react": "^3.31.0",
     "@tailwindcss/vite": "^4.0.15",
     "axios": "^1.8.4",
+    "chart.js": "^4.4.8",
     "clsx": "^2.1.1",
+    "countup.js": "^2.8.0",
+    "framer-motion": "^11.18.2",
+    "gsap": "^3.12.7",
+    "jwt-decode": "^4.0.0",
+    "lucide-react": "^0.344.0",
     "motion": "^12.5.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "^7.4.0",
-    "tailwindcss": "^4.0.15"
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.3.0",
+    "react-countup": "^6.5.3",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
+    "react-intersection-observer": "^9.16.0",
+    "react-router-dom": "^6.30.0",
+    "react-slick": "^0.30.3",
+    "react-tsparticles": "^2.12.2",
+    "slick-carousel": "^1.8.1",
+    "tailwindcss": "^4.0.15",
+    "three": "^0.162.0",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/react-slick": "^0.23.13",
+    "@types/three": "^0.162.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.18",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "postcss": "^8.4.35",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.3.0",
     "vite": "^6.2.0"
   }
 }

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/tracer/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

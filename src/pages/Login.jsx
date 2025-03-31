@@ -1,9 +1,47 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import biotechdept from "../assets/images/biotechdept.jpg";
-import { NavLink } from "react-router-dom";
 
 function Login() {
-  // Define animation variants for cleaner code
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleClick = () => {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 50);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "https://172.16.3.23:5000/api/auth/login",
+        {
+          username,
+          password,
+        }
+      );
+      const { token, role, username: userName } = response.data; // Extract username from response
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
+      localStorage.setItem("userName", userName); // Store username for Navbar to use
+
+      // Dispatch a custom event to notify other components (e.g., Navbar) of the token change
+      window.dispatchEvent(new Event("storageChange"));
+
+      setError("");
+      navigate("/admin"); // Redirect to admin panel after successful login
+      handleClick();
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed");
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
@@ -24,11 +62,9 @@ function Login() {
         className="relative min-h-screen bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${biotechdept})` }}
       >
-        {/* Overlay for better contrast */}
         <div className="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" />
 
         <div className="relative flex items-center justify-center min-h-screen px-4">
-          {/* Subtle animated glow effect */}
           <div className="absolute inset-0 overflow-hidden">
             <div
               className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] 
@@ -36,7 +72,6 @@ function Login() {
             />
           </div>
 
-          {/* Form Container */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -44,7 +79,6 @@ function Login() {
             className="relative z-10 w-full max-w-md p-8 bg-white/95 
               backdrop-blur-md rounded-2xl shadow-xl border border-emerald-100/50"
           >
-            {/* Title */}
             <motion.h2
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -54,17 +88,19 @@ function Login() {
               Welcome Back
             </motion.h2>
 
-            {/* Form */}
             <motion.form
               variants={formVariants}
               initial="hidden"
               animate="visible"
               className="space-y-6"
+              onSubmit={handleSubmit}
             >
               <div className="relative">
                 <input
-                  type="email"
-                  placeholder="Email"
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   className="w-full p-4 pr-12 rounded-full bg-gray-50 
                     border border-gray-200 text-gray-800 placeholder-gray-400 
                     focus:ring-2 focus:ring-emerald-500 focus:border-transparent 
@@ -74,7 +110,7 @@ function Login() {
                   className="absolute right-4 top-1/2 -translate-y-1/2 
                   text-gray-400"
                 >
-                  ✉️
+                  👤
                 </span>
               </div>
 
@@ -82,6 +118,8 @@ function Login() {
                 <input
                   type="password"
                   placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full p-4 pr-12 rounded-full bg-gray-50 
                     border border-gray-200 text-gray-800 placeholder-gray-400 
                     focus:ring-2 focus:ring-emerald-500 focus:border-transparent 
@@ -95,7 +133,8 @@ function Login() {
                 </span>
               </div>
 
-              {/* Animated Button */}
+              {error && <p className="text-red-500 text-center">{error}</p>}
+
               <motion.button
                 whileHover={{
                   scale: 1.03,
@@ -109,27 +148,6 @@ function Login() {
               >
                 Sign In
               </motion.button>
-
-              {/* Additional Links */}
-              <div className="text-center text-sm text-gray-600 space-y-2">
-                <p>
-                  <NavLink
-                    to="/forgotPassword"
-                    className="text-emerald-600 hover:underline"
-                  >
-                    Forgot Password?
-                  </NavLink>
-                </p>
-                <p>
-                  New here?{" "}
-                  <NavLink
-                    to="/signup"
-                    className="text-emerald-600 hover:underline font-medium"
-                  >
-                    Create an Account
-                  </NavLink>
-                </p>
-              </div>
             </motion.form>
           </motion.div>
         </div>

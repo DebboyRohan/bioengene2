@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import { bioengenelogo } from "../assets/asset.js";
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -27,7 +27,7 @@ function Footer() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerChildren}
-          className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12"
+          className="flex flex-col md:flex-row justify-evenly items-center md:items-start gap-12"
           style={{ fontFamily: "var(--font-primary)" }}
         >
           {/* Contact Section (Left) */}
@@ -39,8 +39,8 @@ function Footer() {
               Contact Us
             </h3>
             <p className="text-[#fff]/80 leading-relaxed">
-              BioEnGene, Department of Biotechnology <br />
-              Indian Institute of Technology <br />
+              BioEnGene, Department of Bioscience & Biotechnology <br />
+              Indian Institute of Technology Kharagpur <br />
               Kharagpur, India - 721302
             </p>
             <p className="text-[#fff]/90 mt-3">
@@ -57,16 +57,10 @@ function Footer() {
           {/* Logo (Center) */}
           <motion.div
             variants={fadeInUp}
-            className="flex-1 text-center hidden md:block"
+            className="text-center hidden md:block"
           >
-            <NavLink
-              to="/"
-              onClick={handleClick}
-              className="text-3xl md:text-4xl font-extrabold 
-                bg-gradient-to-r from-[#00bc72] to-[#fff] bg-clip-text text-transparent 
-                hover:scale-105 transition-transform duration-300"
-            >
-              BioEnGene
+            <NavLink to="/" onClick={handleClick}>
+              <img src={bioengenelogo} alt="BioEnGene" className="w-60" />
             </NavLink>
           </motion.div>
 
@@ -80,14 +74,14 @@ function Footer() {
             </h3>
             <div className="flex justify-center md:justify-end space-x-6">
               <motion.a
-                href="https://www.facebook.com/bioengene.iitkgp"
+                href="https://www.facebook.com/share/18sL3z5JCQ/?mibextid=qi2Omg"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, rotate: 10 }}
+                whileHover={{ scale: 1.2, rotate: 0 }}
                 className="transition-transform duration-300"
               >
                 <img
-                  src="https://img.icons8.com/ios-filled/48/000000/facebook.png"
+                  src="https://img.icons8.com/ios-filled/48/FFFFFF/facebook.png"
                   className="w-10 h-10"
                   alt="Facebook"
                 />
@@ -96,37 +90,37 @@ function Footer() {
                 href="https://www.instagram.com/bioengene.iitkgp/"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, rotate: -10 }}
+                whileHover={{ scale: 1.2, rotate: 0 }}
                 className="transition-transform duration-300"
               >
                 <img
-                  src="https://img.icons8.com/ios-filled/48/000000/instagram-new.png"
+                  src="https://img.icons8.com/ios-filled/48/FFFFFF/instagram-new.png"
                   className="w-10 h-10"
                   alt="Instagram"
                 />
               </motion.a>
               <motion.a
-                href="https://www.linkedin.com/company/bioengene-iitkgp"
+                href="https://www.linkedin.com/company/bioengene/"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, rotate: 10 }}
+                whileHover={{ scale: 1.2, rotate: 0 }}
                 className="transition-transform duration-300"
               >
                 <img
-                  src="https://img.icons8.com/ios-filled/48/000000/linkedin.png"
+                  src="https://img.icons8.com/ios-filled/48/FFFFFF/linkedin.png"
                   className="w-10 h-10"
                   alt="LinkedIn"
                 />
               </motion.a>
               <motion.a
-                href="https://www.youtube.com/@bioengene-iitkgp" // Replace with actual YouTube URL
+                href="https://www.youtube.com/channel/UC2NUjcEMwVyNxdLtsti3VRw"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, rotate: 10 }}
+                whileHover={{ scale: 1.2, rotate: 0 }}
                 className="transition-transform duration-300"
               >
                 <img
-                  src="https://img.icons8.com/ios-filled/48/000000/youtube-play.png"
+                  src="https://img.icons8.com/ios-filled/48/FFFFFF/youtube-play.png"
                   className="w-10 h-10"
                   alt="YouTube"
                 />

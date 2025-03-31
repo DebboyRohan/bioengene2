@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { biotechdept, galleryImages } from "../assets/asset.js"; // Assuming this is your imported image
-import { useState } from "react";
-// Dummy gallery data (using biotechdept as a placeholder)
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { biotechdept } from "../assets/asset.js";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-// Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
@@ -40,15 +40,75 @@ const overlayVariants = {
 
 function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Add useNavigate for redirection
+
+  useEffect(() => {
+    const fetchGalleryImages = async () => {
+      try {
+        setLoading(true);
+        // const token = localStorage.getItem("token");
+        // console.log("Stored token:", token); // Debug the token
+
+        // if (!token) {
+        //   throw new Error("No token found, please log in");
+        // }
+
+        const response = await axios.get("https://172.16.3.23:5000/api/gallery", {
+          // headers: { Authorization: `Bearer ${token}` },
+        });
+        const images = response.data.map((item) => ({
+          id: item.id,
+          src: `https://172.16.3.23:5000${item.image_url}`,
+          alt: item.title || "Gallery Image",
+          caption: item.title || "Untitled",
+        }));
+        setGalleryImages(images);
+      } catch (err) {
+        const errorMessage =
+          err.response?.data?.message ||
+          err.message ||
+          "Failed to fetch gallery images";
+        console.error("Error fetching gallery images:", errorMessage);
+        setError(errorMessage);
+        // if (err.response?.status === 401) {
+        //   localStorage.removeItem("token");
+        //   localStorage.removeItem("role");
+        //   navigate("/login");
+        // }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGalleryImages();
+  }, [navigate]); // Add navigate as a dependency
+
+  if (loading) {
+    return (
+      <div className="text-center py-10">
+        <p className="text-lg text-gray-500">Loading gallery...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-10">
+        <p className="text-lg text-red-500">Error: {error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white text-[#004746] overflow-hidden">
-      {/* Unique Hero Section */}
       <motion.section
         initial="hidden"
         animate="visible"
         variants={staggerChildren}
-        className="relative py-24 px-6 md:px-12 bg-white flex items-center justify-center min-h-[80vh]"
+        className="relative py-10 px-6 md:px-12 bg-white flex items-center justify-center min-h-[10vh]"
       >
         <div className="max-w-7xl mx-auto text-center z-10">
           <motion.h1
@@ -71,7 +131,6 @@ function Gallery() {
             A visual journey through BioEnGene’s innovative work and vibrant
             moments.
           </motion.p>
-          {/* Animated Frame Effect */}
           <motion.div
             variants={fadeInUp}
             className="mt-10 relative flex justify-center"
@@ -95,13 +154,12 @@ function Gallery() {
         </div>
       </motion.section>
 
-      {/* Gallery Section */}
       <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerChildren}
-        className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
+        className="py-5 px-6 md:px-12 max-w-7xl mx-auto"
       >
         <motion.h2
           variants={fadeInUp}
@@ -109,49 +167,54 @@ function Gallery() {
         >
           Explore Our Moments
         </motion.h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {galleryImages.map((image, index) => (
-            <motion.div
-              key={image.id}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              whileHover="hover"
-              viewport={{ once: true }}
-              onClick={() => setSelectedImage(image)}
-              className="relative bg-white rounded-xl shadow-md border border-[#004746]/10 
-                hover:border-[#00bc72]/30 transition-all duration-300 cursor-pointer overflow-hidden 
-                group"
-              style={{ fontFamily: "var(--font-primary)" }}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-48 object-cover transition-transform duration-300 
-                  group-hover:scale-105"
-              />
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-[#004746]/50 to-transparent 
-                opacity-0 group-hover:opacity-70 transition-opacity duration-300"
-              />
-              <div
-                className="absolute bottom-0 left-0 right-0 p-4 text-white 
-                opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              >
-                <p className="text-sm font-medium">{image.caption}</p>
-              </div>
+        {galleryImages.length === 0 ? (
+          <p className="text-center text-lg text-gray-500">
+            No images available.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {galleryImages.map((image) => (
               <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.6 }}
-                className="absolute bottom-0 left-0 w-full h-1 bg-[#00bc72]/50"
-              />
-            </motion.div>
-          ))}
-        </div>
+                key={image.id}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                whileHover="hover"
+                viewport={{ once: true }}
+                onClick={() => setSelectedImage(image)}
+                className="relative bg-white rounded-xl shadow-md border border-[#004746]/10 
+                  hover:border-[#00bc72]/30 transition-all duration-300 cursor-pointer overflow-hidden 
+                  group"
+                style={{ fontFamily: "var(--font-primary)" }}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-48 object-cover transition-transform duration-300 
+                    group-hover:scale-105"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-[#004746]/50 to-transparent 
+                  opacity-0 group-hover:opacity-70 transition-opacity duration-300"
+                />
+                <div
+                  className="absolute bottom-0 left-0 right-0 p-4 text-white 
+                  opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <p className="text-sm font-medium">{image.caption}</p>
+                </div>
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.6 }}
+                  className="absolute bottom-0 left-0 w-full h-1 bg-[#00bc72]/50"
+                />
+              </motion.div>
+            ))}
+          </div>
+        )}
       </motion.section>
 
-      {/* Image Overlay */}
       {selectedImage && (
         <motion.div
           initial="hidden"
@@ -164,7 +227,7 @@ function Gallery() {
           <motion.div
             className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto 
               p-6 relative border border-[#00bc72]/20"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+            onClick={(e) => e.stopPropagation()}
             style={{ fontFamily: "var(--font-primary)" }}
           >
             <button

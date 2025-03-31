@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Helvetica", "Arial", sans-serif;
 }
 /* Default: Column layout and centered content for screens 1200px and below */
 .flex-custom {
@@ -38,6 +38,27 @@ body {
   --color-accent: #00bc72;
   --color-elevated: #0a5958;
   --color-foreground: #fff;
+  --color-neonRed: #ff4040;
+  --color-neonPurple: #a940ff;
+  --color-neonOrange: #ff8c40;
+  --color-neonPink: #ff40a9;
+  --color-neonTeal: #40ffd9;
+}
+
+.text-neonRed {
+  color: var(--color-neonRed);
+}
+.text-meomPurple {
+  color: var(--color-neonPurple);
+}
+.text-neonOrange {
+  color: var(--color-neonOrange);
+}
+.text-neonPink {
+  color: var(--color-neonPink);
+}
+.text-neonTeal {
+  color: var(--color-neonTeal);
 }
 .text-primary {
   color: var(--color-primary);
@@ -62,6 +83,9 @@ body {
 }
 .bg-elevated {
   background-color: var(--color-elevated);
+}
+.hover-text-neonRed {
+  color: var(--color-neonRed) !important;
 }
 .hover-text-fix:hover {
   color: var(--color-foreground) !important;
