@@ -3,12 +3,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import biotechdept from "../assets/images/biotechdept.jpg";
+import { FiUser, FiLock, FiLoader, FiAlertCircle } from "react-icons/fi";
 
 function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const API_URL = process.env.REACT_APP_API_URL || "https://172.16.3.23:5000";
 
   const handleClick = () => {
     setTimeout(() => {
@@ -18,27 +23,50 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
+
     try {
       const response = await axios.post(
-        "https://172.16.3.23:5000/api/auth/login",
-        {
-          username,
-          password,
-        }
+        `${API_URL}/api/auth/login`,
+        { username, password },
+        { timeout: 10000 } // 10 second timeout
       );
-      const { token, role, username: userName } = response.data; // Extract username from response
+
+      const { token, role, username: userName } = response.data;
+
+      // Store auth data
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
-      localStorage.setItem("userName", userName); // Store username for Navbar to use
+      localStorage.setItem("userName", userName);
 
-      // Dispatch a custom event to notify other components (e.g., Navbar) of the token change
+      // Notify other components
       window.dispatchEvent(new Event("storageChange"));
 
-      setError("");
-      navigate("/admin"); // Redirect to admin panel after successful login
-      handleClick();
+      // Show success feedback
+      setSuccess(true);
+      setTimeout(() => {
+        navigate("/admin");
+        handleClick();
+      }, 1000);
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      let errorMessage = "Login failed. Please try again.";
+
+      if (err.response) {
+        // Server responded with error status
+        errorMessage = err.response.data?.message || errorMessage;
+      } else if (err.request) {
+        // Request was made but no response
+        errorMessage = "Network error - server not responding";
+      } else {
+        // Other errors
+        errorMessage = err.message || errorMessage;
+      }
+
+      setError(errorMessage);
+      console.error("Login error:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -88,6 +116,30 @@ function Login() {
               Welcome Back
             </motion.h2>
 
+            {success && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-3 bg-emerald-100 text-emerald-800 rounded-lg 
+                  flex items-center justify-center gap-2"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Login successful! Redirecting...
+              </motion.div>
+            )}
+
             <motion.form
               variants={formVariants}
               initial="hidden"
@@ -95,58 +147,80 @@ function Login() {
               className="space-y-6"
               onSubmit={handleSubmit}
             >
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full p-4 pr-12 rounded-full bg-gray-50 
-                    border border-gray-200 text-gray-800 placeholder-gray-400 
-                    focus:ring-2 focus:ring-emerald-500 focus:border-transparent 
-                    transition-all duration-300 outline-none"
-                />
-                <span
-                  className="absolute right-4 top-1/2 -translate-y-1/2 
-                  text-gray-400"
-                >
-                  👤
-                </span>
+              <div className="space-y-4">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full p-4 pr-12 rounded-full bg-gray-50 
+                      border border-gray-200 text-gray-800 placeholder-gray-400 
+                      focus:ring-2 focus:ring-emerald-500 focus:border-transparent 
+                      transition-all duration-300 outline-none"
+                    disabled={loading || success}
+                    required
+                  />
+                  <FiUser className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                </div>
+
+                <div className="relative">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full p-4 pr-12 rounded-full bg-gray-50 
+                      border border-gray-200 text-gray-800 placeholder-gray-400 
+                      focus:ring-2 focus:ring-emerald-500 focus:border-transparent 
+                      transition-all duration-300 outline-none"
+                    disabled={loading || success}
+                    required
+                  />
+                  <FiLock className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                </div>
               </div>
 
-              <div className="relative">
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full p-4 pr-12 rounded-full bg-gray-50 
-                    border border-gray-200 text-gray-800 placeholder-gray-400 
-                    focus:ring-2 focus:ring-emerald-500 focus:border-transparent 
-                    transition-all duration-300 outline-none"
-                />
-                <span
-                  className="absolute right-4 top-1/2 -translate-y-1/2 
-                  text-gray-400"
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-3 bg-red-50 text-red-600 rounded-lg flex items-center gap-2"
                 >
-                  🔒
-                </span>
-              </div>
-
-              {error && <p className="text-red-500 text-center">{error}</p>}
+                  <FiAlertCircle className="flex-shrink-0" />
+                  <span>{error}</span>
+                </motion.div>
+              )}
 
               <motion.button
                 whileHover={{
-                  scale: 1.03,
-                  boxShadow: "0 8px 25px rgba(16, 185, 129, 0.2)",
+                  scale: loading || success ? 1 : 1.03,
+                  boxShadow:
+                    loading || success
+                      ? "none"
+                      : "0 8px 25px rgba(16, 185, 129, 0.2)",
                 }}
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: loading || success ? 1 : 0.98 }}
                 type="submit"
-                className="w-full py-3.5 px-6 text-lg font-medium text-white 
-                  bg-emerald-600 rounded-full shadow-lg hover:bg-emerald-700 
-                  transition-all duration-300"
+                className={`w-full py-3.5 px-6 text-lg font-medium text-white 
+                  rounded-full shadow-lg transition-all duration-300 flex items-center justify-center gap-2
+                  ${
+                    loading || success
+                      ? "bg-emerald-400 cursor-not-allowed"
+                      : "bg-emerald-600 hover:bg-emerald-700"
+                  }`}
+                disabled={loading || success}
               >
-                Sign In
+                {loading ? (
+                  <>
+                    <FiLoader className="animate-spin" />
+                    Signing In...
+                  </>
+                ) : success ? (
+                  "Success!"
+                ) : (
+                  "Sign In"
+                )}
               </motion.button>
             </motion.form>
           </motion.div>
